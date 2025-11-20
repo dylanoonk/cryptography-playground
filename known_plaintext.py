@@ -1,11 +1,15 @@
-# known_plaintext.py
-KNOWN_PLAINTEXT = b'csg{'
+def get_key_by_known_plaintext(ciphertext: bytes, known_plaintext: bytes) -> bytes:
+    return bytes([c ^ p for c, p in zip(ciphertext, known_plaintext)])
 
-# Read the first 5 bytes of the encrypted file
-with open('blob', 'rb') as f:
-    ciphertext_header = f.read()
 
-# Calculate the key by XORing the two
-key = bytes([c ^ p for c, p in zip(ciphertext_header, KNOWN_PLAINTEXT)])
+def main():
+    KNOWN_PLAINTEXT = b'csg{'
 
-print(f"The calculated key is: {key.decode()}")
+    CIPHERTEXT = open('data/blob', 'rb').read()
+
+    KEY = get_key_by_known_plaintext(CIPHERTEXT, KNOWN_PLAINTEXT)
+
+    print(f"The calculated key is: {KEY.decode()}")
+
+if __name__ == "__main__":
+    main()

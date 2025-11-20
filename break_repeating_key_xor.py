@@ -245,8 +245,8 @@ def break_repeating_key_xor(ciphertext: bytes, type_decode="s", brute_force=Fals
 def main():
     
     CHALLENGE_BYTES: bytes = open('data/blob', 'rb').read() # "Wildats everywhere" is the key
-
-    print(break_repeating_key_xor(CHALLENGE_BYTES, brute_force=False))
+    
+    print(break_repeating_key_xor(CHALLENGE_BYTES))
 
     
 if __name__ == "__main__":
